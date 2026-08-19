@@ -11,8 +11,6 @@ class BotClient(discord.Client):
         await self.tree.sync()
         pass
 
-    async def on_ready(self):
-        pass
 
 
 client = BotClient()
