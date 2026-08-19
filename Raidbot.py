@@ -11,10 +11,7 @@ class BotClient(discord.Client):
         await self.tree.sync()
         pass
 
-
-
 client = BotClient()
-
 
 @client.tree.command(name="say")
 @app_commands.allowed_installs(guilds=True, users=True)
