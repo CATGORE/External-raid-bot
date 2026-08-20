@@ -25,7 +25,6 @@ async def say(interaction: discord.Interaction, message: str, ghost: bool = Fals
     )
 
     if ghost:
-        await asyncio.sleep(0.1)
         await FUCK_YOU_YXORD.delete()
 
 @client.tree.command(name="spam")
