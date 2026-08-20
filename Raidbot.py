@@ -9,7 +9,6 @@ class BotClient(discord.Client):
 
     async def setup_hook(self):
         await self.tree.sync()
-        pass
 
 client = BotClient()
 
