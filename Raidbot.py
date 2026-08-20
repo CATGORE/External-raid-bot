@@ -1,3 +1,4 @@
+import asyncio
 import discord
 from discord import app_commands
 
@@ -15,10 +16,17 @@ client = BotClient()
 @client.tree.command(name="say")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-async def say(interaction: discord.Interaction, message: str):
+async def say(interaction: discord.Interaction, message: str, ghost: bool = False):
     await interaction.response.send_message(".", ephemeral=True)
-    await interaction.followup.send(message, ephemeral=False)
+    FUCK_YOU_YXORD = await interaction.followup.send(
+        message,
+        ephemeral=False,
+        wait=True
+    )
 
+    if ghost:
+        await asyncio.sleep(0.1)
+        await FUCK_YOU_YXORD.delete()
 
 @client.tree.command(name="spam")
 @app_commands.allowed_installs(guilds=True, users=True)
