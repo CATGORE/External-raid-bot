@@ -33,7 +33,6 @@ class Nagger(discord.ui.View):
 
     @discord.ui.button(label="spam", style=discord.ButtonStyle.danger)
     async def fl00d(self, interaction: discord.Interaction, button: discord.ui.Button):
-        await interaction.response.send_message(".", ephemeral=True)
         for _ in range(5):
             await interaction.followup.send(self.message, ephemeral=False)
 
