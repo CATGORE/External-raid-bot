@@ -45,8 +45,9 @@ async def spam(interaction: discord.Interaction, message: str):
 
 
 class ilovewomenwithbigboobs(discord.ui.View):
-    def __init__(self):
+    def __init__(self, message: str):
         super().__init__(timeout=None)
+        self.message = message
 
     @discord.ui.button(label="Send", style=discord.ButtonStyle.green, custom_id="poll_raid_send")
     async def send_poll(self, interaction: discord.Interaction, button: discord.ui.Button):
@@ -55,11 +56,11 @@ class ilovewomenwithbigboobs(discord.ui.View):
         try:
             import datetime
             poll = discord.Poll(
-                question=discord.PollMedia(text="spammed"),
+                question=discord.PollMedia(text=self.message),
                 duration=datetime.timedelta(hours=24),
             )
             for _ in range(10):
-                poll.add_answer(text="spammed")
+                poll.add_answer(text=self.message)
             for _ in range(5):
                 await interaction.followup.send(poll=poll)
             await interaction.followup.send("poll sent", ephemeral=True)
@@ -70,10 +71,10 @@ class ilovewomenwithbigboobs(discord.ui.View):
 @client.tree.command(name="poll-raid")
 @app_commands.allowed_installs(guilds=True, users=True)
 @app_commands.allowed_contexts(guilds=True, dms=True, private_channels=True)
-async def poll_raid(interaction: discord.Interaction):
+async def poll_raid(interaction: discord.Interaction, message: str = "spammed"):
     await interaction.response.send_message(
         "press the button to send a poll",
-        view=ilovewomenwithbigboobs(),
+        view=ilovewomenwithbigboobs(message),
         ephemeral=True,
     )
 
