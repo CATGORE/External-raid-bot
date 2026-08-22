@@ -32,7 +32,6 @@ class jeffreysballs(discord.ui.View):
 
     @discord.ui.button(label="spam", style=discord.ButtonStyle.danger)
     async def fl00d(self, interaction: discord.Interaction, button: discord.ui.Button):
-        await interaction.response.send_message(".", ephemeral=True)
         for _ in range(5):
             await interaction.followup.send(self.message, ephemeral=False)
 
@@ -49,7 +48,7 @@ class ilovewomenwithbigboobs(discord.ui.View):
         super().__init__(timeout=None)
         self.message = message
 
-    @discord.ui.button(label="Send", style=discord.ButtonStyle.green, custom_id="poll_raid_send")
+    @discord.ui.button(label="Send", style=discord.ButtonStyle.danger, custom_id="poll_raid_send")
     async def send_poll(self, interaction: discord.Interaction, button: discord.ui.Button):
         await interaction.response.defer(ephemeral=True)
 
